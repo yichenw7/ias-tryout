@@ -1,0 +1,29 @@
+table {
+  color: #000;
+  .not-sumscope {
+    background-color: aqua;
+  }  
+}
+:global {
+    .ant-table-tbody>tr>td, .ant-table-thead>tr>th{
+        padding: 10px;
+        word-break: break-word;
+    }
+    .ant-table-thead>tr>th>{
+        text-align: center;
+    }
+    .ant-table-tbody>tr>td{
+        text-align: center; 
+    }
+    .ant-table-tbody>tr:hover>td{
+        background: #009582;
+        color: #fff;
+    }
+
+    .ant-table-pagination.ant-pagination {
+        display: block;
+        float: none;
+        text-align: center;
+    }
+
+}

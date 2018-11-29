@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IAS - 试用</title>
+    <style>
+        table {
+            text-align: center;
+        }
+        table td {
+            padding: 0 5px;
+            border: 1px solid grey;
+        }
+        table .not-sumscope {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <table id="table">
+        <thead>
+            <tr>
+                <td>时间</td>
+                <td>用户名</td>
+                <td>姓名</td>
+                <td>机构</td>
+                <td>部门</td>
+                <td>职位</td>
+                <td>资产规模</td>
+                <td>联系方式</td>
+                <td>职位级别</td>
+                <td>曾使用过</td>
+                <td>期望服务</td>
+                <td>状态</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        var table = document.getElementById('table')
+        var tbody = table.getElementsByTagName('tbody')[0]
+
+        function getTryoutList() {
+            return fetch('https://ias.idbhost.com/api/tryout')
+                .then(res => res.json())
+                .then(json => json.code === '0000' ? json.data : [])
+        }
+        function getQBUserInfo(username) {
+            return fetch('http://192.168.1.212:5678/user/'.concat(username))
+                .then(res => res.json())
+        }
+
+    let _formData = { 
+        user_list: ["huameng.jia"],
+    };
+        let opts = {
+        method: "POST",   //请求方法
+        // mode: 'no-cors',
+        body: JSON.stringify(_formData),   //请求体
+　　　　　headers: {
+   　　　　 'Accept': 'application/json',
+   　　　　 'Content-Type': 'application/json',
+ 　　　　 },
+
+    }
+        function getQBUserInfos(username) {
+            return fetch('http://192.168.1.212:5678/users', opts)
+                .then(res => res.json())
+        }
+        getQBUserInfos();
+        // getTryoutList().then(data => {
+        //     let lst = [];
+        //     data.forEach(item => {
+        //         if (item.apply_time > '2018-08-01 00:00:00') lst.push(item);
+        //     })
+        //     lst.sort((a, b) => a.apply_time > b.apply_time ? -1 : 1)
+        //     lst.forEach(item => {
+        //         getQBUserInfo(item.qb_user_name).then(user => {
+        //             tbody.innerHTML += `<tr class="${item.qb_user_name.indexOf('@') > -1 ? 'not-sumscope' : ''}">
+        //                                 <td>${item.apply_time}</td>
+        //                                 <td>${item.qb_user_name}</td>
+        //                                 <td>${user.displayName}</td>
+        //                                 <td>${user.companyName}</td>
+        //                                 <td>${user.dept}</td>
+        //                                 <td>${user.title}</td>
+        //                                 <td>${item.size}</td>
+        //                                 <td>${item.contact}</td>
+        //                                 <td>${item.occupation}</td>
+        //                                 <td>${item.used}</td>
+        //                                 <td>${item.service}</td>
+        //                                 <td>${item.status}</td>
+        //                                 </tr>
+        //                             `
+        //         })
+        //     })
+        // })
+    </script>
+</body>
+</html>
+
