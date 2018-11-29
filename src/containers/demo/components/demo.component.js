@@ -55,7 +55,7 @@ class Tryout extends React.Component {
         pageSize: 20,
       },
       setClassName: '',
-      loading: false,
+      loading: true,
       tryoutData: [],
     }
   }
@@ -77,14 +77,9 @@ class Tryout extends React.Component {
           if (item.apply_time > '2018-08-01 00:00:00') tryout.push(item);
         })  
         tryout.sort((a, b) => a.apply_time > b.apply_time ? -1 : 1);
+        
         let user_list = [];
-        tryout.forEach((item, index) => {
-          // let payload = {
-          //   qb_user_name: item.qb_user_name,
-          // }
-          user_list.push(item.qb_user_name);
-          
-        })
+        tryout.forEach(item => user_list.push(item.qb_user_name))
         const userListSet = new Set(user_list);
 
         let payload = {
@@ -106,7 +101,7 @@ class Tryout extends React.Component {
             return true;
           }
         })
-        if(ls > 0){
+        if(ls >= 0){
          list = {
           apply_time: item.apply_time,
           qb_user_name: item.qb_user_name,
@@ -139,20 +134,20 @@ class Tryout extends React.Component {
             id: item.id,
            }
         }
-        
         data.push(list);
       })
       this.setState({
         data: data,
+        loading: false,
       })
     }
   };
 
 
   render() {
-    const {data,pagination} = this.state;                    
+    const {data,pagination,loading} = this.state;                    
     return ( <div>
-      <Table columns = {columns} dataSource = {data} rowClassName = {data => data.qb_user_name.indexOf('@') > -1 ? 'not-sumscope' : '' } pagination = {pagination} style = {{margin: '20px'}} rowKey = {data => data.id} bordered />
+      <Table columns = {columns} dataSource = {data} loading = {loading} rowClassName = {data => data.qb_user_name.indexOf('@') > -1 ? 'not-sumscope' : '' } pagination = {pagination} style = {{margin: '20px'}} rowKey = {data => data.id} bordered />
       </div>
     );
   }
