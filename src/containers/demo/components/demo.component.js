@@ -3,7 +3,6 @@ import {Table} from 'antd';
 import {connect} from 'react-redux';
 import action from '../../../actions';
 import './style.less';
-import { isNull } from 'util';
 export const userUrl = [];
 
 const columns = [{
@@ -81,7 +80,6 @@ class Tryout extends React.Component {
         let user_list = [];
         tryout.forEach(item => user_list.push(item.qb_user_name))
         const userListSet = new Set(user_list);
-
         let payload = {
           user_list: [...userListSet],
         }
