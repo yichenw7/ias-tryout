@@ -4,6 +4,7 @@ import App from '@containers/app';
 import Piwik from '@utils/Piwik';
 import login from './login';
 import tryout from './tryout';
+import aum from './aum';
 
 export default (app) => {
   const piwik = app._store.getState().app.piwik;
@@ -17,6 +18,7 @@ export default (app) => {
         <Route path='/' component={props => (
           <App {...props}>
             <Route path='/tryout' exact component={tryout} />
+            <Route path='/aum' exact component={aum} />
           </App>
         )} />
       </Switch>

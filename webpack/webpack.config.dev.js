@@ -40,7 +40,31 @@ const config = {
         pathRewrite: {
           '^/demo2/users': '/users'
         },
-      }
+      },
+      '/aum/aum30': {
+        target: `http://192.168.1.212:5556`,
+        pathRewrite: {
+          '^/aum/aum30': '/aum30'
+        },
+      },
+      '/aum/aum7': {
+        target: `http://192.168.1.212:5556`,
+        pathRewrite: {
+          '^/aum/aum7': '/aum7'
+        },
+      },
+      '/aum/mau': {
+        target: `http://192.168.1.212:5557`,
+        pathRewrite: {
+          '^/aum/mau': '/mau'
+        },
+      },
+      '/aum/wau': {
+        target: `http://192.168.1.212:5557`,
+        pathRewrite: {
+          '^/aum/wau': '/wau'
+        },
+      },
     },
   },
 };

@@ -9,14 +9,16 @@ export const onEffect = async (action, response) => {
 
     action.success = response.status === 200;
     if (response.status === 200) {
+      action.success = true;
+      action.result = body;
+
       if (body.code === '0000') {
         action.success = true;
         action.result = body.data;
       } else if(action.url.indexOf('users')){
         action.success = true;
         action.result = body;
-      }
-      else {
+      } else {
         action.success = false;
         action.error = '服务端异常';
       }
@@ -29,7 +31,6 @@ export const onEffect = async (action, response) => {
     action.success = false;
     action.error = '服务端异常';
   }
-
   return action;
 }
 
