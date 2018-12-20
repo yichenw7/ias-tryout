@@ -11,7 +11,6 @@ export const onEffect = async (action, response) => {
     if (response.status === 200) {
       action.success = true;
       action.result = body;
-
       if (body.code === '0000') {
         action.success = true;
         action.result = body.data;
