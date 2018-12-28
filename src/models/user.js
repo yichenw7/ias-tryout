@@ -5,6 +5,7 @@ export default [
     key: 'user.login',
     method: 'post',
     url: () => `${user}login`,
+    
   },
   {
     key: 'user.info',
